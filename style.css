@@ -1,0 +1,326 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2e2e2e;
+    color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    height: 120vh;
+    padding: 20px;
+    background-color: #222;
+    text-align: center;
+    border-right: 2px solid #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Profile Image */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* Name */
+h2 {
+    margin: 10px 0 5px 0;
+    font-size: 22px;
+}
+
+/* Contact Info */
+.contact-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 25px;
+    margin-top: auto;
+    padding-bottom: 40px;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-item a {
+    color: white;
+    font-size: 28px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-item a:hover {
+    color: #8B5DFF;
+    transform: scale(1.2);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    padding: 10px;
+}
+
+.navbar a {
+    color: #f4f4f4;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    background-color: #8B5DFF;
+    transform: scale(1.1);
+}
+
+/* Content Sections */
+.content {
+    flex: 1;
+    padding: 30px;
+}
+
+/* Skills Table */
+table {
+    width: 10%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #555;
+}
+
+th {
+    background-color: #8B5DFF;
+    color: white;
+}
+
+td {
+    background-color: #222222;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #8B5DFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4a0099;
+}
+
+/* Skill Details (Hidden by Default) */
+.skill-detail {
+    display: none;
+    background-color: #444;
+    color: #f4f4f4;
+}
+
+/* Resume Image */
+.resume-image img {
+    width: 100%;
+    max-width: 800px;
+    transition: max-width 0.3s;
+}
+
+/* Contact Message Box */
+.contact-message-box {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px auto 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Message */
+.contact-message {
+    color: #f4f4f4;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Contact Links */
+.contact-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.contact-links li {
+    font-size: 18px;
+    color: #f4f4f4;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-links a {
+    color: #8B5DFF;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.contact-links a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Icons */
+.icon {
+    font-size: 20px;
+    color: #8B5DFF;
+    margin-right: 10px;
+}
+
+/* Projects Section */
+.project {
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.project img {
+    width: 180px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #f4f4f4;
+}
+
+.project-info p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* Remove Hyperlink Under Skills */
+.more-info {
+    display: none;
+}
+
+/* Project Section Background */
+#projects {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Project Box Styling */
+.project {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+.project:hover {
+    background-color: #222222;
+}
+
+/* Image Hover Zoom */
+.project img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project:hover img {
+    transform: scale(1.1);
+}
+
+/* Resume Section Buttons */
+#resume button {
+    margin: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #8B5DFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Toggle Arrow */
+.toggle-arrow {
+    font-size: 20px;
+    color: #feec2a;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    margin-top: -10px; /* Adjust arrow position */
+}
+
+/* Rotate the arrow when expanded */
+.toggle-arrow.active {
+    transform: rotate(180deg);
+}
+
+/* Skill Text - Show first line always */
+.skill-text {
+    overflow: hidden;
+    max-height: 40px;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    background-color: #444; /* Same as .project */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* About Me Text Styling (Updated) */
+/* About Me Text Styling */
+/* About Me Text */
+.about-text {
+    font-size: 18px; /* Increased size */
+    color: #f4f4f4; /* Brighter for readability */
+    line-height: 1.8;
+    text-align: left; /* Slightly left-aligned */
+    font-weight: normal;
+}

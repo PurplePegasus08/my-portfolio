@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <img src="img/Duck.png" alt="Profile Picture" class="profile-pic">
+            <h2>Your Name</h2>
+            <p class="tagline">Data Science | Machine Learning</p>
+            <div class="contact-info">
+                <p>📧 your.email@example.com</p>
+                <p>📞 +123 456 7890</p>
+                <p>📍 Your City, Country</p>
+            </div>
+            <div class="social-icons">
+                <div class="social-item">
+                    <a href="https://github.com/PurplePegasus08" target="_blank">
+                        <img src="img/git.svg" alt="GitHub" class="social-icon">
+                    </a>
+                    <span>GitHub</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://www.linkedin.com/in/anurag-r-737148248/" target="_blank">
+                        <img src="img/317750_linkedin_icon.svg" alt="LinkedIn" class="social-icon">
+                    </a>
+                    <span>LinkedIn</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://www.kaggle.com/proximus08" target="_blank">
+                        <img src="img/kaggle.svg" alt="Kaggle" class="social-icon">
+                    </a>
+                    <span>Kaggle</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="content">
+            <nav class="navbar">
+                <a href="javascript:void(0);" onclick="showSection('about')">About</a>
+                <a href="javascript:void(0);" onclick="showSection('resume')">Resume</a>
+                <a href="javascript:void(0);" onclick="showSection('projects')">Projects</a>
+                <a href="javascript:void(0);" onclick="showSection('blog')">Blog</a>
+                <a href="javascript:void(0);" onclick="showSection('contact')">Contact</a>
+            </nav>
+            
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2>About Me</h2>
+                <p class="about-text">Bivariate analysis focuses on exploring the relationship between two variables to find connections, correlations, and dependencies. It’s an important part of exploratory data analysis that helps understand how two variables interact. Some key techniques used in bivariate analysis include scatter plots, which visualize the relationship between two continuous variables; correlation coefficient, which measures how strongly two variables are related, commonly using Pearson’s correlation for linear relationships; and cross-tabulation, or contingency tables, which show the frequency distribution of two categorical variables and help understand their relationship.</p>
+                
+                <!-- Skills Section -->
+                <h1>Skills</h1>
+                <div class="project">
+                    <img src="/img/laptop_17122723.gif" alt="Project 1 Image">
+                    <div class="project-info">
+                        <h3>Programming Languages</h3>
+                        <p class="skill-text">Proficient in Python and R for data science and machine learning applications. Skilled in writing efficient, clean, and optimized code for data analysis, automation, and predictive modeling.</p>
+                        <span class="toggle-arrow">⌄</span>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <img src="/img/algorithm_17122733.gif" alt="Project 2 Image">
+                    <div class="project-info">
+                        <h3>Data Preprocessing</h3>
+                        <p class="skill-text">Experienced in handling missing data, outlier detection, feature engineering, and data transformation techniques. Proficient in using libraries like Pandas, NumPy, and Scikit-learn to clean and prepare raw datasets for analysis.</p>
+                        <span class="toggle-arrow">⌄</span>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <img src="img/DMani.gif" alt="Project 3 Image">
+                    <div class="project-info">
+                        <h3>Data Manipulation</h3>
+                        <p class="skill-text">Strong expertise in using Pandas and Numpy for extracting, transforming, and structuring data efficiently. Capable of handling large datasets, merging tables, and optimizing data retrieval for insights.</p>
+                        <span class="toggle-arrow">⌄</span>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <img src="img/chart_17905650.gif" alt="Project 4 Image">
+                    <div class="project-info">
+                        <h3>Data Visualization</h3>
+                        <p class="skill-text">Skilled in creating insightful and interactive visualizations using Matplotlib and Seaborn. Able to communicate complex data patterns through graphs, charts, and dashboards.</p>
+                        <span class="toggle-arrow">⌄</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Resume Section -->
+            <section id="resume" class="section" style="display:none;">
+                <h2>Resume</h2>
+                <button id="toggle-btn" onclick="toggleResume()">Expand Resume</button>
+                <button id="download-btn" onclick="downloadResume()">Download Resume</button>
+                <div class="resume-image">
+                    <img src="/img/Anurag ML Resume.png" alt="Resume" id="resume-image" style="max-width:800px;"/>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section" style="display:none;">
+                <h1>Projects</h1>
+                
+                <div class="project">
+                    <img src="img/" alt="Project 1">
+                    <div class="project-info">
+                        <h3>Project Title 1</h3>
+                        <p>Description of your first project goes here. Mention key details and technologies used.</p>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <img src="img/project2.png" alt="Project 2">
+                    <div class="project-info">
+                        <h3>Project Title 2</h3>
+                        <p>Description of your second project goes here. Highlight important aspects.</p>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <img src="img/project3.png" alt="Project 3">
+                    <div class="project-info">
+                        <h3>Project Title 3</h3>
+                        <p>Brief explanation of your third project and what makes it unique.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="section" style="display:none;">
+                <h2>Contact Me</h2>
+                <p class="contact-message">
+                    Feel free to reach out to me on any of my platforms for potential collaborations, 
+                    project discussions, or offers in mind. It is my pleasure to hear from you and engage in 
+                    fruitful conversations that can lead to mutually beneficial partnerships.
+                </p>
+
+                <!-- Social Links (Styled List) -->
+                <ul class="contact-links">
+                    <li><a href="https://www.linkedin.com/in/anurag-r-737148248/" target="_blank">➤ <strong>LinkedIn</strong></a> – My professional network</li>
+                    <li><a href="https://github.com/PurplePegasus08" target="_blank">➤ <strong>Github</strong></a> – My blogs and articles</li>
+                    <li><a href="https://www.kaggle.com/proximus08" target="_blank">➤ <strong>Kaggle</strong></a> – My Kaggle profile</li>
+                    <li><a href="https://wa.me/yourwhatsapplink" target="_blank">➤ <strong>WhatsApp</strong></a> – Contact me directly</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
