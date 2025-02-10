@@ -314,8 +314,6 @@ button:hover {
     margin-bottom: 20px;
 }
 
-/* About Me Text Styling (Updated) */
-/* About Me Text Styling */
 /* About Me Text */
 .about-text {
     font-size: 18px; /* Increased size */
@@ -323,4 +321,18 @@ button:hover {
     line-height: 1.8;
     text-align: left; /* Slightly left-aligned */
     font-weight: normal;
+}
+.more-info-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #8B5DFF; /* Your theme color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.more-info-btn:hover {
+    background-color: #5500aa; /* Slightly darker on hover */
 }
