@@ -90,6 +90,3 @@ document.querySelectorAll('.toggle-arrow').forEach(arrow => {
         }
     });
 });
-document.querySelector(".menu-icon").addEventListener("click", function() {
-    document.querySelector(".navbar").classList.toggle("active");
-});
