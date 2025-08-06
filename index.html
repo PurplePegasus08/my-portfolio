@@ -317,7 +317,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .skill-item:hover, .experience-item:hover, .education-item:hover, .project-card:hover {
@@ -439,6 +438,7 @@
             padding: 30px 0;
         }
 
+        /* New styles for resume image zoom */
         .resume-image img {
             width: 100%;
             max-width: 900px;
@@ -446,12 +446,15 @@
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             margin: 0 auto;
-            transition: transform 0.3s ease;
             border: 1px solid var(--color-border);
+            cursor: zoom-in; /* Indicate clickable for zoom */
+            transition: transform 0.3s ease-in-out; /* Smooth zoom transition */
+            transform-origin: center center; /* Zoom from the center */
         }
 
-        .resume-image img:hover {
-            transform: scale(1.01);
+        .resume-image img.zoomed {
+            transform: scale(1.5); /* Zoom in effect */
+            cursor: zoom-out; /* Indicate clickable for zoom out */
         }
 
         #resume button {
@@ -473,74 +476,9 @@
             box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
         }
 
-        /* Modal */
+        /* Modal - Removed as per user request */
         .modal {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .modal.show {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: var(--color-bg-secondary);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 700px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--color-border);
-            transform: translateY(-30px);
-            opacity: 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .modal-content h3 {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--color-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .modal-content p {
-            color: var(--color-text-primary);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 2.5rem;
-            color: var(--color-text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-btn:hover {
-            color: var(--color-highlight);
         }
 
         /* Contact Section */
@@ -739,7 +677,7 @@
             h2 {
                 font-size: 1.8rem;
             }
-            .about-text, .skill-item p, .experience-item p, .education-item p, .project-card p, .modal-content p, .contact-message {
+            .about-text, .skill-item p, .experience-item p, .education-item p, .project-card p, .contact-message {
                 font-size: 0.9rem;
             }
             .skill-item h3, .experience-item h3, .education-item h3, .project-card h3 {
@@ -748,16 +686,6 @@
             #resume button, .project-card .more-info-btn {
                 padding: 10px 20px;
                 font-size: 0.95rem;
-            }
-            .modal-content {
-                padding: 30px;
-                max-width: 90%;
-            }
-            .modal-content h3 {
-                font-size: 1.6rem;
-            }
-            .close-btn {
-                font-size: 2rem;
             }
         }
 
@@ -795,17 +723,6 @@
             }
             .skill-item, .experience-item, .education-item, .project-card {
                 padding: 20px;
-            }
-            .modal-content {
-                padding: 20px;
-            }
-            .modal-content h3 {
-                font-size: 1.4rem;
-            }
-            .close-btn {
-                font-size: 1.8rem;
-                top: 15px;
-                right: 15px;
             }
             .contact-links li {
                 flex-direction: column;
@@ -953,7 +870,7 @@
                 <h2>My Projects</h2>
                 <div class="project-grid">
                     <div class="project-card" data-aos="fade-up">
-                        <img src="/my-portfolio/img/chart_17905650.gif">
+                        <img src="/my-portfolio/img/chart_17905650.gif" alt="Laptop Price Prediction">
                         <h3>Laptop Price Prediction</h3>
                         <p>Built a machine learning model to estimate laptop prices based on key specifications like Processor, RAM, and storage. This project involved extensive data preprocessing, feature engineering, and model training to achieve accurate price estimations.</p>
                         <a href="https://web-production-9548b.up.railway.app/" target="_blank" class="more-info-btn">Visit here</a>
@@ -980,15 +897,16 @@
                 <div class="ml-tip" id="ml-tip"></div>
             </section>
 
-            <!-- Resume Section -->
+            <!-- Resume Section - UPDATED -->
             <section id="resume" class="section" data-aos="fade-up">
                 <h2>My Resume</h2>
                 <div class="resume-container">
                     <div class="resume-image">
-                        <img src="/my-portfolio/img/Anurag.jpg" alt="Anurag Rajora Resume">
+                        <!-- Added ID for JavaScript interaction -->
+                        <img src="/my-portfolio/img/Anurag.jpg" alt="Anurag Rajora Resume" id="resume-image-zoom">
                     </div>
-                    <button onclick="window.open('path/to/your/resume.pdf', '_blank')">Download Resume</button>
-                    <button onclick="openModal('resume-modal-content')">View Full Resume</button>
+                    <!-- Download button fixed with correct href and download attribute -->
+                    <button id="download-resume-btn">Download Resume</button>
                 </div>
             </section>
 
@@ -1010,24 +928,13 @@
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Modals - Removed project-modal, keeping only if needed for other sections -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <h3 id="modal-title"></h3>
             <p id="modal-description"></p>
             <a id="modal-link" href="#" target="_blank" class="more-info-btn">Visit Project</a>
-        </div>
-    </div>
-
-    <div id="resume-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3>Full Resume</h3>
-            <div class="resume-image">
-                <img src="https://placehold.co/900x1200/1E293B/06B6D4?text=Your+Resume+Here" alt="Anurag Rajora Resume">
-            </div>
-            <button onclick="window.open('path/to/your/resume.pdf', '_blank')">Download Resume</button>
         </div>
     </div>
 
@@ -1058,41 +965,61 @@
         });
 
         // p5.js Neural Network Visualization
-        function setup() {
-            let canvas = createCanvas(300, 150);
-            canvas.parent('neural-network-canvas');
-            background(30, 41, 59, 200); // Match --color-bg-secondary with opacity
-        }
+        let sketch = function(p) {
+            let nodes = [];
+            let connections = [];
+            let numLayers = 3;
+            let nodesPerLayer = [3, 4, 2];
 
-        function draw() {
-            background(30, 41, 59, 200);
-            stroke(6, 182, 212, 200); // Match --color-accent
-            strokeWeight(1);
-            fill(6, 182, 212, 100);
+            p.setup = function() {
+                let canvas = p.createCanvas(300, 150);
+                canvas.parent('neural-network-canvas');
+                p.noLoop();
+                createNeuralNetwork();
+            };
 
-            // Simulate neural network nodes and connections
-            let layers = [
-                [{x: 50, y: 50}, {x: 50, y: 100}], // Input layer
-                [{x: 150, y: 25}, {x: 150, y: 75}, {x: 150, y: 125}], // Hidden layer
-                [{x: 250, y: 75}] // Output layer
-            ];
+            p.draw = function() {
+                p.clear();
+                p.background(0, 0); // Transparent background
+                p.stroke(6, 182, 212, 100); // Accent color with transparency
+                p.strokeWeight(1);
+                
+                // Draw connections
+                for (let c of connections) {
+                    p.line(c.from.x, c.from.y, c.to.x, c.to.y);
+                }
 
-            // Draw connections
-            for (let i = 0; i < layers.length - 1; i++) {
-                for (let node1 of layers[i]) {
-                    for (let node2 of layers[i + 1]) {
-                        line(node1.x, node1.y, node2.x, node2.y);
+                // Draw nodes
+                p.noStroke();
+                p.fill(6, 182, 212, 150); // Accent color with more transparency
+                for (let n of nodes) {
+                    p.ellipse(n.x, n.y, 8, 8); // Smaller nodes
+                }
+            };
+
+            function createNeuralNetwork() {
+                let xOffset = p.width / (numLayers + 1);
+                for (let i = 0; i < numLayers; i++) {
+                    let yOffset = p.height / (nodesPerLayer[i] + 1);
+                    for (let j = 0; j < nodesPerLayer[i]; j++) {
+                        let node = {
+                            x: (i + 1) * xOffset,
+                            y: (j + 1) * yOffset
+                        };
+                        nodes.push(node);
+
+                        if (i > 0) {
+                            let prevLayerNodes = nodes.filter(n => n.x === i * xOffset);
+                            for (let prevNode of prevLayerNodes) {
+                                connections.push({ from: prevNode, to: node });
+                            }
+                        }
                     }
                 }
             }
+        };
 
-            // Draw nodes
-            for (let layer of layers) {
-                for (let node of layer) {
-                    ellipse(node.x, node.y, 10 + sin(frameCount * 0.05) * 5, 10 + sin(frameCount * 0.05) * 5);
-                }
-            }
-        }
+        new p5(sketch);
 
         AOS.init({
             duration: 800,
@@ -1162,13 +1089,13 @@
             setInterval(displayRandomTip, 10000); // Change tip every 10 seconds
         });
 
-        // Project Modals
+        // Project Modals (kept as they seem to be for project details, not resume)
         const projectCards = document.querySelectorAll('.project-card');
         const projectModal = document.getElementById('project-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDescription = document.getElementById('modal-description');
         const modalLink = document.getElementById('modal-link');
-        const closeModalBtns = document.querySelectorAll('.close-btn');
+        const closeModalBtns = document.querySelectorAll('.close-btn'); // This now only targets project modal close btn
 
         projectCards.forEach(card => {
             card.addEventListener('click', function(event) {
@@ -1189,34 +1116,44 @@
             });
         });
 
-        // Resume Modal
-        const resumeModal = document.getElementById('resume-modal');
-        function openModal(modalId) {
-            if (modalId === 'resume-modal-content') {
-                resumeModal.classList.add('show');
-            }
-        }
-
-        closeModalBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                projectModal.classList.remove('show');
-                resumeModal.classList.remove('show');
-            });
+        // Close project modal
+        // Filter closeModalBtns to only target the project modal's close button if there are multiple.
+        // Or, if project-modal is the only one using this class, it's fine.
+        document.querySelector('#project-modal .close-btn').addEventListener('click', function() {
+            projectModal.classList.remove('show');
         });
 
         window.addEventListener('click', function(event) {
             if (event.target == projectModal) {
                 projectModal.classList.remove('show');
             }
-            if (event.target == resumeModal) {
-                resumeModal.classList.remove('show');
-            }
         });
 
-        // Resume download button
-        document.querySelector('#resume button:first-of-type').addEventListener('click', function() {
-            window.open('path/to/your/resume.pdf', '_blank');
-        });
+        // New Resume Zoom and Download Logic
+        const resumeImageZoom = document.getElementById('resume-image-zoom');
+        const downloadResumeButton = document.getElementById('download-resume-btn');
+
+        // Toggle zoom on image click
+        if (resumeImageZoom) {
+            resumeImageZoom.addEventListener('click', function() {
+                this.classList.toggle('zoomed');
+            });
+        }
+
+        // Handle resume download
+        if (downloadResumeButton) {
+            downloadResumeButton.addEventListener('click', function() {
+                // Ensure the path to your resume PDF is correct here.
+                // This path assumes the PDF is in the /my-portfolio/ directory.
+                const resumePath = '/my-portfolio/AnuragRajora_Resume.pdf'; 
+                const link = document.createElement('a');
+                link.href = resumePath;
+                link.download = 'AnuragRajora_Resume.pdf'; // Suggested filename for download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
     </script>
 </body>
 </html>
