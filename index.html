@@ -1,1156 +1,353 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anurag Rajora - Professional Portfolio</title>
-    <!-- Fonts: Inter for body, Montserrat for headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <!-- p5.js CDN for neural network visualization -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
-    <style>
-        /* Base Styles - Professional Dark Theme with AI Elements */
-        :root {
-            --color-bg-primary: #0F172A; /* Deep Navy/Slate */
-            --color-bg-secondary: #1E293B; /* Slightly lighter Navy/Slate */
-            --color-accent: #06B6D4; /* Vibrant Teal */
-            --color-text-primary: #E2E8F0; /* Light Grayish Blue */
-            --color-text-secondary: #94A3B8; /* Muted Gray */
-            --color-border: rgba(255, 255, 255, 0.1); /* Subtle white border */
-            --color-highlight: #FFD700; /* Gold for hover effects */
-            --color-gradient: linear-gradient(135deg, #06B6D4, #3B82F6); /* AI-inspired gradient */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--color-bg-primary);
-            color: var(--color-text-primary);
-            overflow-x: hidden;
-            position: relative;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        /* Particle Background - AI Neural Network Style */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--color-bg-primary);
-        }
-
-        /* Main Container */
-        .main-wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar - Glassmorphism Effect */
-        .sidebar {
-            width: 280px;
-            padding: 40px 20px;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
-            border-right: 1px solid var(--color-border);
-            z-index: 10;
-        }
-
-        .profile-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 4px solid var(--color-accent);
-            object-fit: cover;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
-        }
-
-        .sidebar h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            color: var(--color-text-primary);
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 400;
-        }
-
-        .contact-info p {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            margin: 12px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-info .fas {
-            color: var(--color-accent);
-            margin-right: 12px;
-            font-size: 1.1rem;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            margin-top: auto;
-            padding-bottom: 20px;
-        }
-
-        .social-item a {
-            color: var(--color-text-secondary);
-            font-size: 2rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-item a:hover {
-            color: var(--color-accent);
-            transform: scale(1.2);
-        }
-
-        /* Main Content Area */
-        .content {
-            flex: 1;
-            padding: 40px;
-            margin-left: 280px;
-            max-width: calc(100% - 280px);
-        }
-
-        /* Hero Section with Neural Network Visualization */
-        .hero-section {
-            padding: 60px 30px;
-            text-align: center;
-            background: var(--color-bg-secondary);
-            margin-bottom: 40px;
-            border-radius: 12px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--color-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%2306B6D4" stroke-opacity="0.1" stroke-width="1" d="M10 10 L90 90 M90 10 L10 90 M50 10 V90 M10 50 H90"/></svg>') repeat;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .hero-section h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            background: var(--color-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-section p {
-            font-size: 1.3rem;
-            color: var(--color-text-primary);
-            max-width: 800px;
-            margin: 0 auto 20px;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-        }
-
-        #neural-network-canvas {
-            width: 100%;
-            max-width: 300px;
-            height: 150px;
-            margin: 0 auto;
-            opacity: 0.7;
-            z-index: 0;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: sticky;
-            top: 20px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            z-index: 50;
-            border: 1px solid var(--color-border);
-        }
-
-        .navbar a {
-            color: var(--color-text-primary);
-            padding: 10px 25px;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1.05rem;
-            border-radius: 8px;
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-
-        .navbar a:hover {
-            background: var(--color-gradient);
-            color: var(--color-bg-primary);
-            transform: translateY(-2px);
-        }
-
-        .navbar a.active {
-            background: var(--color-gradient);
-            color: var(--color-bg-primary);
-            font-weight: 700;
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
-        }
-
-        /* Section Styling */
-        .section {
-            display: none;
-            background: var(--color-bg-secondary);
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--color-border);
-        }
-
-        #about {
-            display: block;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            background: var(--color-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
-            text-align: center;
-            padding-bottom: 15px;
-            font-weight: 700;
-        }
-
-        /* About Section */
-        .about-text {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--color-text-primary);
-            background: rgba(6, 182, 212, 0.1);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        .about-text strong {
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .about-text a {
-            color: var(--color-accent);
-            text-decoration: none;
-            border-bottom: 1px dashed var(--color-accent);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .about-text a:hover {
-            color: var(--color-highlight);
-            border-color: var(--color-highlight);
-        }
-
-        /* Grids */
-        .skill-grid, .experience-grid, .education-grid, .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-item, .experience-item, .education-item, .project-card {
-            background: var(--color-bg-primary);
-            border: 1px solid var(--color-border);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-item:hover, .experience-item:hover, .education-item:hover, .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
-            background: var(--color-bg-secondary);
-        }
-
-        .skill-item h3, .experience-item h3, .education-item h3, .project-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            color: var(--color-accent);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .skill-item p, .experience-item p, .education-item p, .project-card p {
-            font-size: 0.98rem;
-            color: var(--color-text-primary);
-            line-height: 1.6;
-        }
-
-        .experience-item .text-secondary, .education-item .text-secondary {
-            color: var(--color-highlight);
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 1.05rem;
-        }
-
-        .experience-item .text-muted, .education-item .text-muted {
-            color: var(--color-text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-        }
-
-        .experience-item ul, .education-item ul {
-            list-style: disc;
-            padding-left: 25px;
-            margin-top: 15px;
-            color: var(--color-text-primary);
-            font-size: 0.95rem;
-        }
-
-        .experience-item ul li, .education-item ul li {
-            margin-bottom: 8px;
-        }
-
-        /* Project Card with AI Overlay */
-        .project-card {
-            text-align: center;
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><circle cx="25" cy="25" r="5" fill="%2306B6D4" fill-opacity="0.1"/></svg>') repeat;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .project-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-card img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .project-card .more-info-btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: var(--color-gradient);
-            color: var(--color-bg-primary);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 700;
-            margin-top: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
-        }
-
-        .project-card .more-info-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
-        }
-
-        /* ML Tip Container */
-        .ml-tip {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            background: rgba(6, 182, 212, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-        }
-
-        /* Resume Section */
-        .resume-container {
-            text-align: center;
-            padding: 30px 0;
-        }
-
-        /* New styles for resume image zoom */
-        .resume-image img {
-            width: 100%;
-            max-width: 900px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
-            border: 1px solid var(--color-border);
-            cursor: zoom-in; /* Indicate clickable for zoom */
-            transition: transform 0.3s ease-in-out; /* Smooth zoom transition */
-            transform-origin: center center; /* Zoom from the center */
-        }
-
-        .resume-image img.zoomed {
-            transform: scale(1.5); /* Zoom in effect */
-            cursor: zoom-out; /* Indicate clickable for zoom out */
-        }
-
-        #resume button {
-            margin: 25px 15px;
-            padding: 15px 30px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            background: var(--color-gradient);
-            color: var(--color-bg-primary);
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
-        }
-
-        #resume button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Modal - Removed as per user request */
-        .modal {
-            display: none;
-        }
-
-        /* Contact Section */
-        .contact-message-box {
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 650px;
-            margin: 0 auto;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .contact-message {
-            font-size: 1.05rem;
-            color: var(--color-text-primary);
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .contact-message a {
-            color: var(--color-accent);
-            text-decoration: none;
-            border-bottom: 1px dashed var(--color-accent);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .contact-message a:hover {
-            color: var(--color-highlight);
-            border-color: var(--color-highlight);
-        }
-
-        .contact-links {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-
-        .contact-links li {
-            margin: 12px 0;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-links a {
-            color: var(--color-accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-links a:hover {
-            color: var(--color-highlight);
-        }
-
-        .contact-links .icon {
-            margin-right: 10px;
-            color: var(--color-accent);
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            color: var(--color-text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--color-border);
-        }
-
-        footer p {
-            margin-bottom: 5px;
-        }
-
-        footer a {
-            color: var(--color-accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--color-highlight);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .main-wrapper {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-                padding-bottom: 30px;
-                border-right: none;
-                border-bottom: 1px solid var(--color-border);
-                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-                border-radius: 0 0 15px 15px;
-            }
-
-            .content {
-                padding: 30px;
-                margin-left: 0;
-                max-width: 100%;
-            }
-
-            .hero-section h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero-section p {
-                font-size: 1.1rem;
-            }
-
-            #neural-network-canvas {
-                max-width: 200px;
-                height: 100px;
-            }
-
-            .navbar {
-                flex-wrap: wrap;
-                gap: 15px;
-                padding: 12px;
-                top: 10px;
-            }
-
-            .navbar a {
-                padding: 8px 18px;
-                font-size: 0.95rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .skill-grid, .experience-grid, .education-grid, .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .resume-image img {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                padding: 25px 15px;
-            }
-            .profile-pic {
-                width: 100px;
-                height: 100px;
-            }
-            .sidebar h2 {
-                font-size: 1.8rem;
-            }
-            .tagline {
-                font-size: 1rem;
-            }
-            .contact-info p {
-                font-size: 0.85rem;
-            }
-            .social-icons {
-                gap: 15px;
-            }
-            .social-item a {
-                font-size: 1.8rem;
-            }
-            .content {
-                padding: 20px;
-            }
-            .hero-section {
-                padding: 40px 20px;
-            }
-            .hero-section h1 {
-                font-size: 2.2rem;
-            }
-            .hero-section p {
-                font-size: 1rem;
-            }
-            #neural-network-canvas {
-                max-width: 150px;
-                height: 80px;
-            }
-            .navbar {
-                gap: 10px;
-                padding: 10px;
-            }
-            .navbar a {
-                font-size: 0.85rem;
-                padding: 6px 12px;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
-            .about-text, .skill-item p, .experience-item p, .education-item p, .project-card p, .contact-message {
-                font-size: 0.9rem;
-            }
-            .skill-item h3, .experience-item h3, .education-item h3, .project-card h3 {
-                font-size: 1.2rem;
-            }
-            #resume button, .project-card .more-info-btn {
-                padding: 10px 20px;
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar h2 {
-                font-size: 1.5rem;
-            }
-            .tagline {
-                font-size: 0.9rem;
-            }
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            .hero-section p {
-                font-size: 0.9rem;
-            }
-            #neural-network-canvas {
-                max-width: 120px;
-                height: 60px;
-            }
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-            }
-            .navbar a {
-                width: 80%;
-                text-align: center;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            .section {
-                padding: 20px;
-            }
-            .skill-item, .experience-item, .education-item, .project-card {
-                padding: 20px;
-            }
-            .contact-links li {
-                flex-direction: column;
-                gap: 5px;
-            }
-            .contact-links .icon {
-                margin-right: 0;
-                margin-bottom: 5px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anurag Rajora · Data Scientist, Computer Vision & ML</title>
+<meta name="description" content="Data scientist with two years of experience building face recognition, license plate detection and recommendation systems with Python, PyTorch, FastAPI and pgvector.">
+<meta property="og:title" content="Anurag Rajora · Data Scientist, Computer Vision & ML">
+<meta property="og:description" content="Face recognition on pgvector, YOLOv8 plate detection, and recommendation engines. Based in Delhi.">
+<meta name="theme-color" content="#F1F2EE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151B26'/%3E%3Cpath d='M14 18v-4h4M50 18v-4h-4M14 46v4h4M50 46v4h-4' stroke='%23F2B705' stroke-width='4' fill='none'/%3E%3Ctext x='32' y='41' font-size='24' font-weight='700' text-anchor='middle' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F2EE; --surface:#E6E8E3; --ink:#151B26; --muted:#566070; --line:#CDD1CA;
+  --accent:#F2B705; --accent-ink:#151B26; --link:#1C4FD7;
+  --panel:#151B26; --panel-2:#1F2837;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#10151D; --surface:#171E29; --ink:#ECEEF1; --muted:#98A2B3; --line:#2A3342; --link:#8DB0FF; --panel:#1A2230; --panel-2:#232D3F;}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.1rem;text-decoration:none;letter-spacing:-.01em}
+.bar nav{display:flex;align-items:center;gap:26px;font-size:.95rem}
+.bar nav a{text-decoration:none;color:var(--muted)}
+.bar nav a:hover{color:var(--ink)}
+.btn{display:inline-block;font-weight:600;font-size:.95rem;text-decoration:none;padding:10px 18px;border-radius:6px;background:var(--ink);color:var(--bg)!important;border:2px solid var(--ink);transition:background .15s,color .15s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)!important}
+.btn.ghost{background:transparent;color:var(--ink)!important}
+.btn.ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)!important}
+
+/* hero */
+.hero{padding:72px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,5.2vw,4rem);line-height:1.02;letter-spacing:-.035em}
+.lede{margin-top:24px;max-width:34em;font-size:1.15rem;color:var(--muted)}
+.lede b{color:var(--ink);font-weight:600}
+.cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+
+.scope{background:var(--panel);border-radius:8px;padding:14px 14px 0;color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.04) inset}
+.scope-top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#9AA5B8;padding:0 4px 10px}
+.scope-top button{font:inherit;font-weight:600;color:#fff;background:transparent;border:1px solid #44506A;border-radius:5px;padding:4px 10px;cursor:pointer}
+.scope-top button:hover{border-color:var(--accent);color:var(--accent)}
+.scope svg{display:block;width:100%;height:auto;border-radius:4px;background:var(--panel-2)}
+.readout{display:flex;justify-content:space-between;gap:12px;padding:12px 4px 14px;font-size:.85rem;color:#9AA5B8}
+.readout strong{color:#fff;font-weight:600;letter-spacing:.04em}
+.ocr{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;max-width:0}
+.scope svg text{font-family:var(--body)}
+
+/* detection animation */
+#scan{opacity:0}
+#box,#chip{opacity:0}
+.run #scan{animation:scan 1.3s ease-in-out .2s 1 both}
+.run #box{animation:fade .01s linear 1.55s forwards}
+.run #box rect.frame{stroke-dasharray:420;stroke-dashoffset:420;animation:draw .5s ease-out 1.55s forwards}
+.run #chip{animation:fade .2s linear 2s forwards}
+.run .ocr{animation:type 1s steps(13) 2.4s forwards}
+@keyframes scan{0%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0;transform:translateY(330px)}}
+@keyframes fade{to{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes type{to{max-width:9em}}
+.done #box,.done #chip{opacity:1}
+.done #box rect.frame{stroke-dashoffset:0;stroke-dasharray:none}
+.done .ocr{max-width:9em}
+@media (prefers-reduced-motion:reduce){
+  #scan{display:none}
+  #box,#chip{opacity:1}
+  .ocr{max-width:9em}
+  html{scroll-behavior:auto}
+}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec{display:grid;grid-template-columns:220px 1fr;gap:40px}
+h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;line-height:1.2}
+.sec h2{position:sticky;top:84px;align-self:start}
+
+/* experience timeline */
+.job{position:relative;padding:0 0 44px 28px;border-left:2px solid var(--line)}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.job:first-child::before{background:var(--accent);border-color:var(--accent)}
+.job h3{font-family:var(--display);font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
+.meta{color:var(--muted);font-size:.93rem;margin:2px 0 14px}
+.job ul{padding-left:1.1em}
+.job li{margin-bottom:10px;max-width:40em}
+.job li b{font-weight:600}
+
+/* projects as rows */
+.proj{display:grid;grid-template-columns:230px 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
+.proj:first-of-type{padding-top:0}
+.proj:last-child{border-bottom:0;padding-bottom:0}
+.proj h3{font-family:var(--display);font-size:1.25rem;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.proj .stack{margin-top:8px;color:var(--muted);font-size:.9rem;line-height:1.5}
+.proj p{max-width:40em}
+.proj .result{margin-top:10px;font-weight:600}
+.proj .links{margin-top:12px;font-size:.95rem}
+.proj .links a{color:var(--link);text-underline-offset:3px}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;background:var(--accent);color:var(--accent-ink);padding:1px 8px;border-radius:4px;margin-bottom:8px}
+.tag.plain{background:var(--surface);color:var(--muted)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:170px 1fr;row-gap:0}
+.skills dt,.skills dd{padding:14px 0;border-bottom:1px solid var(--line)}
+.skills dt{font-weight:600}
+.skills dd{color:var(--muted)}
+.skills dt:last-of-type,.skills dd:last-of-type{border-bottom:0}
+
+/* education */
+.edu{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.edu:first-of-type{padding-top:0}
+.edu b{font-weight:600}
+.edu span{color:var(--muted)}
+.certs{margin-top:22px;color:var(--muted)}
+.certs b{color:var(--ink);font-weight:600}
+
+/* contact */
+.mail{display:inline-block;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4.2vw,2.8rem);letter-spacing:-.03em;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:6px;text-underline-offset:6px;word-break:break-all}
+.mail:hover{background:var(--accent);color:var(--accent-ink)}
+.contact p{color:var(--muted);margin-bottom:18px;max-width:30em}
+.contact ul{list-style:none;margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 28px}
+.contact li a{text-underline-offset:3px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.88rem}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .sec,.proj{grid-template-columns:1fr;gap:12px}
+  .sec h2{position:static;margin-bottom:12px}
+  .skills{grid-template-columns:1fr}
+  .skills dt{border-bottom:0;padding-bottom:0}
+  .bar nav a:not(.btn){display:none}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .hero{padding:44px 0 56px}
+  section{padding:52px 0}
+  .readout{flex-direction:column;gap:2px}
+}
+</style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
 
-    <div class="main-wrapper">
-        <!-- Sidebar -->
-        <div class="sidebar" data-aos="fade-right">
-            <img src="/my-portfolio/img/Duck.png" alt="Profile Picture" class="profile-pic">
-            <h2>Anurag Rajora</h2>
-            <p class="tagline">AI & ML Enthusiast</p>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> anuragrajor400@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +91 9311099536</p>
-                <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
-            </div>
-            <div class="social-icons">
-                <div class="social-item"><a href="https://github.com/PurplePegasus08" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></div>
-                <div class="social-item"><a href="https://www.kaggle.com/proximus08" target="_blank" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a></div>
-                <div class="social-item"><a href="https://www.linkedin.com/in/anurag-r-737148248/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></div>
-                <div class="social-item"><a href="https://wa.me/919311099536" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
-            </div>
-        </div>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top">Anurag Rajora</a>
+    <nav aria-label="Main">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="Anurag_Rajora_Resume.pdf" download>Resume</a>
+    </nav>
+  </div>
+</header>
 
-        <!-- Main Content -->
-        <div class="content">
-            <!-- Hero Section with Neural Network Visualization -->
-            <div class="hero-section" data-aos="fade-down">
-                <h1>Anurag Rajora</h1>
-                <p>AI & ML Enthusiast | Crafting Data-Driven Solutions</p>
-                <div id="neural-network-canvas"></div>
-            </div>
-
-            <!-- Navbar -->
-            <nav class="navbar" data-aos="fade-down" data-aos-delay="200">
-                <a href="#about" class="active">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#projects">Projects</a>
-                <a href="#resume">Resume</a>
-                <a href="#contact">Contact</a>
-            </nav>
-
-            <!-- About Section -->
-            <section id="about" class="section" data-aos="fade-up">
-                <h2>About Me</h2>
-                <p class="about-text">
-                    I'm a passionate <strong>Cybersecurity and Machine Learning Enthusiast</strong> with hands-on experience in network monitoring, threat detection, and predictive modeling. My journey in tech is driven by a desire to leverage <strong>AI and ML</strong> to solve complex real-world challenges, helping businesses make smarter, data-driven decisions. I'm constantly expanding my toolkit in <strong>Python, C++, SQL</strong>, and advanced data analysis through practical projects and active participation in Kaggle competitions. I thrive in environments that value innovation and am always seeking opportunities to contribute to cutting-edge solutions.
-                </p>
-                <h2>My Core Skills</h2>
-                <div class="skill-grid">
-                    <div class="skill-item" data-aos="fade-up">
-                        <h3>Programming Languages</h3>
-                        <p class="skill-text">Proficient in Python and C++, with a strong focus on data science and machine learning applications. Experienced in writing clean, efficient, and well-documented code for data analysis, algorithm implementation, and predictive modeling.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                        <h3>Data Preprocessing & Manipulation</h3>
-                        <p class="skill-text">Experienced in handling missing data, outlier detection, feature engineering, and data transformation techniques. Proficient in using libraries like Pandas, NumPy, and Scikit-learn to clean, prepare, extract, transform, and structure raw datasets efficiently for analysis and modeling.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                        <h3>Machine Learning Frameworks & Tools</h3>
-                        <p class="skill-text">Solid understanding and practical experience with PyTorch and Scikit-learn for building, training, and evaluating machine learning models. Familiar with Fast API for deploying ML models and Pydantic for data validation.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
-                        <h3>Data Visualization & EDA</h3>
-                        <p class="skill-text">Skilled in creating insightful and interactive visualizations using Matplotlib and Seaborn. Experienced in Exploratory Data Analysis (EDA) to uncover patterns, identify anomalies, and test hypotheses within datasets.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
-                        <h3>Version Control & Operating Systems</h3>
-                        <p class="skill-text">Proficient in using Git and GitHub for version control, collaborative development, and project management. Comfortable working in Linux environments for development and deployment.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
-                        <h3>Cybersecurity Tools</h3>
-                        <p class="skill-text">Familiar with a diverse toolset for cybersecurity including Burp Suite, Nmap, and Wireshark for network monitoring, vulnerability assessment, and threat detection.</p>
-                    </div>
-                    <div class="skill-item" data-aos="fade-up" data-aos-delay="600">
-                        <h3>Neural Networks & Deep Learning</h3>
-                        <p class="skill-text">Experienced in designing and training neural networks using PyTorch and TensorFlow. Skilled in implementing architectures like CNNs and RNNs for tasks such as image recognition, NLP, and time-series analysis.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Work Experience Section -->
-            <section id="experience" class="section" data-aos="fade-up">
-                <h2>Work Experience</h2>
-                <div class="experience-grid">
-                    <div class="experience-item" data-aos="fade-up">
-                        <h3>Security Analyst Intern</h3>
-                        <p class="text-secondary">GICSEH Security Pvt.Ltd</p>
-                        <p class="text-muted">Delhi, India | June 2023 - August 2023</p>
-                        <ul>
-                            <li><strong>Network Monitoring:</strong> Utilized firewalls and proxy chains to configure and maintain secure network environments.</li>
-                            <li><strong>Tool Proficiency:</strong> Gained practical experience with a diverse toolset including Burp Suite, Nmap, and Wireshark for security analysis and threat detection.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
-                        <h3>Freelancer - Data Science & ML Projects</h3>
-                        <p class="text-secondary">Self-Employed</p>
-                        <p class="text-muted">Remote | Ongoing</p>
-                        <ul>
-                            <li><strong>Developed custom ML models:</strong> Built and deployed predictive models for various client needs, focusing on data analysis and solution delivery.</li>
-                            <li><strong>Data Cleaning & Feature Engineering:</strong> Performed extensive data preprocessing, including handling missing values, outlier detection, and creating new features to improve model performance.</li>
-                            <li><strong>Client Communication:</strong> Collaborated closely with clients to understand requirements, provide regular updates, and ensure project alignment with business goals.</li>
-                            <li><strong>Technology Stack:</strong> Leveraged Python, Scikit-learn, Pandas, and Matplotlib for project execution.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Education Section -->
-            <section id="education" class="section" data-aos="fade-up">
-                <h2>Education & Certifications</h2>
-                <div class="education-grid">
-                    <div class="education-item" data-aos="fade-up">
-                        <h3>Bachelors of Computer Applications</h3>
-                        <p class="text-secondary">Indira Gandhi National Open University</p>
-                        <p class="text-muted">Delhi, India | Ongoing</p>
-                    </div>
-                    <div class="education-item" data-aos="fade-up" data-aos-delay="100">
-                        <h3>Machine Learning</h3>
-                        <p class="text-secondary">Simplilearn (Online)</p>
-                        <p class="text-muted">2022-2023 | Delhi, India</p>
-                    </div>
-                    <div class="education-item" data-aos="fade-up" data-aos-delay="200">
-                        <h3>Diploma in Cyber Security & CEH</h3>
-                        <p class="text-secondary">Global Institute of Cyber Security</p>
-                        <p class="text-muted">2021-2022 | Delhi, India</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="section" data-aos="fade-up">
-                <h2>My Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/my-portfolio/img/chart_17905650.gif" alt="Laptop Price Prediction">
-                        <h3>Laptop Price Prediction</h3>
-                        <p>Built a machine learning model to estimate laptop prices based on key specifications like Processor, RAM, and storage. This project involved extensive data preprocessing, feature engineering, and model training to achieve accurate price estimations.</p>
-                        <a href="https://web-production-9548b.up.railway.app/" target="_blank" class="more-info-btn">Visit here</a>
-                    </div>
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                        <img src="/my-portfolio/img/PROgram.gif" alt="Threat Detection">
-                        <h3>Threat Detection using NSL-KDD Dataset</h3>
-                        <p>Developed and trained a machine learning model to classify network traffic as normal or malicious using the NSL-KDD Dataset. Tackled preprocessing challenges with techniques like VIF analysis, feature elimination, and class weighting.</p>
-                        <a href="#" target="_blank" class="more-info-btn">More Info</a>
-                    </div>
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                        <img src="/my-portfolio/img/license-plate_290163.png" alt="License Plate Detection">
-                        <h3>Commercial Vehicle License Plate Detection</h3>
-                        <p>Developed a computer vision pipeline using YOLOv8 for real-world vehicle license plate detection. Preprocessed images with grayscale conversion and resizing, then applied OCR modules to extract alphanumeric text.</p>
-                        <a href="#" target="_blank" class="more-info-btn">More Info</a>
-                    </div>
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                        <img src="/my-portfolio/img/maths.gif" alt="ML Competition">
-                        <h3>ML Competition - The Polytope Permutation Puzzle</h3>
-                        <p>Participated in a Kaggle competition involving 3D permutation puzzles. Implemented intelligent search algorithms like A* and BFS to find optimal solutions in minimal moves.</p>
-                        <a href="#" target="_blank" class="more-info-btn">More Info</a>
-                    </div>
-                </div>
-                <div class="ml-tip" id="ml-tip"></div>
-            </section>
-
-            <!-- Resume Section - UPDATED -->
-            <section id="resume" class="section" data-aos="fade-up">
-                <h2>My Resume</h2>
-                <div class="resume-container">
-                    <div class="resume-image">
-                        <!-- Added ID for JavaScript interaction -->
-                        <img src="/my-portfolio/img/Anurag.jpg" alt="Anurag Rajora Resume" id="resume-image-zoom">
-                    
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="section" data-aos="fade-up">
-                <h2>Contact Me</h2>
-                <div class="contact-message-box">
-                    <p class="contact-message">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!
-                    </p>
-                    <ul class="contact-links">
-                        <li><span class="icon"><i class="fas fa-envelope"></i></span> <a href="mailto:anuragrajor400@gmail.com">anuragrajor400@gmail.com</a></li>
-                        <li><span class="icon"><i class="fas fa-phone"></i></span> <a href="tel:+919311099536">+91 9311099536</a></li>
-                        <li><span class="icon"><i class="fab fa-linkedin"></i></span> <a href="https://www.linkedin.com/in/anurag-r-737148248/" target="_blank">LinkedIn Profile</a></li>
-                        <li><span class="icon"><i class="fab fa-github"></i></span> <a href="https://github.com/PurplePegasus08" target="_blank">GitHub Profile</a></li>
-                    </ul>
-                </div>
-            </section>
-        </div>
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>I build computer vision and ML systems that work on real data.</h1>
+      <p class="lede">Data scientist in Delhi with two years of experience. I've built <b>face recognition on pgvector</b>, <b>YOLOv8 number plate detection</b> and a <b>recommendation engine for BSNL</b>, and I ship them behind FastAPI.</p>
+      <div class="cta">
+        <a class="btn" href="Anurag_Rajora_Resume.pdf" download>Download resume</a>
+        <a class="btn ghost" href="#projects">See projects</a>
+      </div>
     </div>
 
-    <!-- Modals - Removed project-modal, keeping only if needed for other sections -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 id="modal-title"></h3>
-            <p id="modal-description"></p>
-            <a id="modal-link" href="#" target="_blank" class="more-info-btn">Visit Project</a>
-        </div>
+    <figure class="scope" id="scope" aria-label="Animated example of license plate detection">
+      <div class="scope-top"><span>ANPR demo · frame 0412</span><button type="button" id="replay">Replay</button></div>
+      <svg viewBox="0 0 480 360" role="img" aria-label="Rear of a car with a bounding box drawn around its license plate">
+        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#2C3850" stroke-width="1"/></pattern></defs>
+        <rect width="480" height="360" fill="url(#grid)"/>
+        <rect x="0" y="330" width="480" height="30" fill="#18202D"/>
+        <rect x="84" y="128" width="312" height="176" rx="26" fill="#2D3A50"/>
+        <rect x="118" y="148" width="244" height="72" rx="12" fill="#121A27"/>
+        <rect x="100" y="232" width="62" height="24" rx="6" fill="#E5484D"/>
+        <rect x="318" y="232" width="62" height="24" rx="6" fill="#E5484D"/>
+        <rect x="76" y="300" width="328" height="26" rx="10" fill="#222D40"/>
+        <rect x="190" y="244" width="100" height="34" rx="4" fill="#F2B705"/>
+        <text x="240" y="267" text-anchor="middle" font-size="13" font-weight="700" fill="#151B26" letter-spacing=".5">DL 00 AB 0000</text>
+        <rect id="scan" x="0" y="0" width="480" height="3" fill="#F2B705" opacity="0"/>
+        <g id="box">
+          <rect class="frame" x="182" y="236" width="116" height="50" fill="none" stroke="#fff" stroke-width="2"/>
+        </g>
+        <g id="chip">
+          <rect x="182" y="214" width="96" height="22" fill="#F2B705"/>
+          <text x="190" y="229.5" font-size="12.5" font-weight="700" fill="#151B26">plate  0.93</text>
+        </g>
+      </svg>
+      <div class="readout"><span>YOLOv8 finds the plate</span><span>OCR reads: <strong class="ocr" id="ocr">DL 00 AB 0000</strong></span></div>
+    </figure>
+  </div>
+</div>
+
+<section id="experience">
+  <div class="wrap sec">
+    <h2>Experience</h2>
+    <div>
+      <article class="job">
+        <h3>Python Developer, Vision Plus Security Control</h3>
+        <p class="meta">Nov 2025 to present</p>
+        <ul>
+          <li><b>Face recognition attendance system.</b> Real-time recognition with FaceNet and MTCNN. User embeddings live in PostgreSQL with pgvector for fast similarity search, behind a FastAPI backend that also handles geofencing. Verification reaches 80% accuracy.</li>
+          <li><b>Smart procurement bill system.</b> A vision-language model that reads procurement bills, pulls out the key fields, structures them and writes a summary for faster document processing.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <h3>Data Scientist, Hybrid Software Technologies</h3>
+        <p class="meta">Aug 2024 to Nov 2025</p>
+        <ul>
+          <li><b>Plan recommender for BSNL.</b> Content-based engine using TF-IDF and cosine similarity over telecom plans. It cut search time by 20% and improved recommendation relevance by 35%.</li>
+          <li><b>Industrial time-series.</b> Built pipelines for cleaning, resampling and feature extraction on real-time sensor data.</li>
+          <li><b>Model tuning.</b> Engineered features and tuned hyperparameters with Optuna and PyTorch, then evaluated model performance.</li>
+        </ul>
+      </article>
     </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Anurag Rajora. All rights reserved.</p>
-        <p>Designed with passion and code.</p>
-    </footer>
+<section id="projects">
+  <div class="wrap sec">
+    <h2>Projects</h2>
+    <div>
+      <article class="proj">
+        <div>
+          <span class="tag">Featured</span>
+          <h3>Flowmatics</h3>
+          <p class="stack">FastAPI, LangGraph, Gemini, Ollama, Pandas, scikit-learn, React 19, TypeScript</p>
+        </div>
+        <div>
+          <p>Upload a CSV, explore it in several analysis views and ask questions in plain English. An agent built on LangGraph runs the analysis and returns charts. It works with Google Gemini or a local model through Ollama, so data can stay on your machine.</p>
+          <p class="links"><a href="https://github.com/PurplePegasus08/Flowmatics" target="_blank" rel="noopener">View code on GitHub</a></p>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <h3>Number plate recognition (ANPR)</h3>
+          <p class="stack">YOLOv8, PaddleOCR, Tesseract, OpenCV</p>
+        </div>
+        <div>
+          <p>Freelance project. A custom-trained YOLOv8 model finds plates on commercial vehicles in poor lighting, at odd angles and when partly hidden. OCR then reads the plate text.</p>
+          <p class="result">90%+ detection accuracy, 85%+ text recognition.</p>
+          <p class="links"><a href="https://github.com/PurplePegasus08/ANPD-using-YOLO" target="_blank" rel="noopener">View code on GitHub</a></p>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <h3>Sign language translator</h3>
+          <p class="stack">MediaPipe, PyTorch, ResNet18</p>
+        </div>
+        <div>
+          <p>Real-time American Sign Language recognition from a webcam. MediaPipe isolates the hand, and a pretrained ResNet18 classifies the sign so it shows as text on the live feed.</p>
+          <p class="links"><a href="https://github.com/PurplePegasus08/Sign_Language-translator" target="_blank" rel="noopener">View code on GitHub</a></p>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <h3>Credit card fraud detection</h3>
+          <p class="stack">scikit-learn, Naive Bayes, Random Forest, GridSearchCV</p>
+        </div>
+        <div>
+          <p>Binary classifier for a heavily imbalanced dataset, with preprocessing, feature scaling and grid-searched hyperparameters. Tuned to stay reliable on the rare minority class.</p>
+          <p class="result">F1 0.88, precision 0.86, recall 0.90.</p>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <h3>Laptop price prediction</h3>
+          <p class="stack">scikit-learn, pandas</p>
+        </div>
+        <div>
+          <p>Regression model that estimates a laptop's price from its processor, RAM, storage and other specs, built as an end-to-end ML project.</p>
+          <p class="links"><a href="https://github.com/PurplePegasus08/Laptop-price-prediction" target="_blank" rel="noopener">View code on GitHub</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Initialize Particles.js - Neural Network Style
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 } },
-                color: { value: '#06B6D4' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 4, random: true },
-                line_linked: { enable: true, distance: 200, color: '#06B6D4', opacity: 0.3, width: 1.5 },
-                move: { enable: true, speed: 1.5, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                modes: { grab: { distance: 200, line_linked: { opacity: 0.7 } }, push: { particles_nb: 3 } }
-            },
-            retina_detect: true
-        });
+<section id="skills">
+  <div class="wrap sec">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Computer vision</dt><dd>OpenCV, MediaPipe, YOLOv8, FaceNet, MTCNN, ResNet and other pretrained models</dd>
+      <dt>Machine learning</dt><dd>PyTorch, scikit-learn, CNNs and ANNs, Random Forest, SVM, KNN, regression, ensembles, Optuna</dd>
+      <dt>Generative AI</dt><dd>RAG, LangChain, LangGraph, Hugging Face (still learning)</dd>
+      <dt>Backend and data</dt><dd>Python, SQL, FastAPI, REST APIs, PostgreSQL, pgvector, Docker</dd>
+      <dt>Analysis</dt><dd>pandas, NumPy, Excel, Power BI, Matplotlib, Seaborn, Plotly</dd>
+      <dt>Cloud</dt><dd>AWS (SageMaker, S3, Lambda, EC2), GCP</dd>
+    </dl>
+  </div>
+</section>
 
-        // p5.js Neural Network Visualization
-        let sketch = function(p) {
-            let nodes = [];
-            let connections = [];
-            let numLayers = 3;
-            let nodesPerLayer = [3, 4, 2];
+<section id="education">
+  <div class="wrap sec">
+    <h2>Education</h2>
+    <div>
+      <div class="edu"><b>Bachelor of Computer Applications</b><span>In progress</span><span>IGNOU, Delhi</span></div>
+      <div class="edu"><b>Machine Learning</b><span>2022 to 2023</span><span>Simplilearn (online)</span></div>
+      <div class="edu"><b>Diploma in Cyber Security and CEH</b><span>2021 to 2022</span><span>Global Institute of Cyber Security</span></div>
+      <p class="certs"><b>Certificates:</b> Machine Learning, Generative AI (Oracle), Cyber Security diploma.</p>
+    </div>
+  </div>
+</section>
 
-            p.setup = function() {
-                let canvas = p.createCanvas(300, 150);
-                canvas.parent('neural-network-canvas');
-                p.noLoop();
-                createNeuralNetwork();
-            };
+<section id="contact" class="contact">
+  <div class="wrap sec">
+    <h2>Contact</h2>
+    <div>
+      <p>I'm open to data science and computer vision roles. Email is the fastest way to reach me.</p>
+      <a class="mail" href="mailto:anuragrajor400@gmail.com">anuragrajor400@gmail.com</a>
+      <ul>
+        <li><a href="tel:+919311099536">+91 93110 99536</a></li>
+        <li><a href="https://linkedin.com/in/anurag0809" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/PurplePegasus08" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.kaggle.com/proximus08" target="_blank" rel="noopener">Kaggle</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
 
-            p.draw = function() {
-                p.clear();
-                p.background(0, 0); // Transparent background
-                p.stroke(6, 182, 212, 100); // Accent color with transparency
-                p.strokeWeight(1);
-                
-                // Draw connections
-                for (let c of connections) {
-                    p.line(c.from.x, c.from.y, c.to.x, c.to.y);
-                }
+<footer><div class="wrap">© 2026 Anurag Rajora · Delhi, India</div></footer>
 
-                // Draw nodes
-                p.noStroke();
-                p.fill(6, 182, 212, 150); // Accent color with more transparency
-                for (let n of nodes) {
-                    p.ellipse(n.x, n.y, 8, 8); // Smaller nodes
-                }
-            };
-
-            function createNeuralNetwork() {
-                let xOffset = p.width / (numLayers + 1);
-                for (let i = 0; i < numLayers; i++) {
-                    let yOffset = p.height / (nodesPerLayer[i] + 1);
-                    for (let j = 0; j < nodesPerLayer[i]; j++) {
-                        let node = {
-                            x: (i + 1) * xOffset,
-                            y: (j + 1) * yOffset
-                        };
-                        nodes.push(node);
-
-                        if (i > 0) {
-                            let prevLayerNodes = nodes.filter(n => n.x === i * xOffset);
-                            for (let prevNode of prevLayerNodes) {
-                                connections.push({ from: prevNode, to: node });
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        new p5(sketch);
-
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-            easing: 'ease-in-out',
-        });
-
-        // Navbar active state and section display
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.navbar a');
-            const sections = document.querySelectorAll('.section');
-
-            function showSection(id) {
-                sections.forEach(section => {
-                    section.style.display = 'none';
-                });
-                document.getElementById(id).style.display = 'block';
-            }
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    const targetId = this.getAttribute('href').substring(1);
-                    showSection(targetId);
-
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            const initialHash = window.location.hash.substring(1);
-            if (initialHash && document.getElementById(initialHash)) {
-                showSection(initialHash);
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${initialHash}`) {
-                        link.classList.add('active');
-                    }
-                });
-            } else {
-                showSection('about');
-                document.querySelector('.navbar a[href="#about"]').classList.add('active');
-            }
-
-            // ML Tip Rotator
-            const mlTips = [
-                "Did you know? Overfitting in ML models can be mitigated using techniques like dropout and regularization.",
-                "AI Tip: Neural networks excel in tasks like image recognition due to their ability to learn hierarchical features.",
-                "ML Fact: Gradient Descent is a key optimization technique used to minimize loss in machine learning models.",
-                "Pro Tip: Feature scaling can significantly improve the performance of algorithms like SVM and KNN."
-            ];
-
-            function displayRandomTip() {
-                const tipElement = document.getElementById('ml-tip');
-                const randomTip = mlTips[Math.floor(Math.random() * mlTips.length)];
-                tipElement.textContent = randomTip;
-            }
-
-            displayRandomTip();
-            setInterval(displayRandomTip, 10000); // Change tip every 10 seconds
-        });
-
-        // Project Modals (kept as they seem to be for project details, not resume)
-        const projectCards = document.querySelectorAll('.project-card');
-        const projectModal = document.getElementById('project-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        const modalLink = document.getElementById('modal-link');
-        const closeModalBtns = document.querySelectorAll('.close-btn'); // This now only targets project modal close btn
-
-        projectCards.forEach(card => {
-            card.addEventListener('click', function(event) {
-                if (event.target.tagName === 'A' || event.target.closest('.more-info-btn')) {
-                    return;
-                }
-
-                const title = this.querySelector('h3').textContent;
-                const description = this.querySelector('p').textContent;
-                const link = this.querySelector('.more-info-btn') ? this.querySelector('.more-info-btn').href : '#';
-
-                modalTitle.textContent = title;
-                modalDescription.textContent = description;
-                modalLink.href = link;
-                modalLink.style.display = (link === '#' || link === '' || link === 'javascript:void(0)') ? 'none' : 'inline-block';
-
-                projectModal.classList.add('show');
-            });
-        });
-
-        // Close project modal
-        // Filter closeModalBtns to only target the project modal's close button if there are multiple.
-        // Or, if project-modal is the only one using this class, it's fine.
-        document.querySelector('#project-modal .close-btn').addEventListener('click', function() {
-            projectModal.classList.remove('show');
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target == projectModal) {
-                projectModal.classList.remove('show');
-            }
-        });
-
-        // New Resume Zoom and Download Logic
-        const resumeImageZoom = document.getElementById('resume-image-zoom');
-        const downloadResumeButton = document.getElementById('download-resume-btn');
-
-        // Toggle zoom on image click
-        if (resumeImageZoom) {
-            resumeImageZoom.addEventListener('click', function() {
-                this.classList.toggle('zoomed');
-            });
-        }
-
-        // Handle resume download
-        if (downloadResumeButton) {
-            downloadResumeButton.addEventListener('click', function() {
-                // Ensure the path to your resume PDF is correct here.
-                // This path assumes the PDF is in the /my-portfolio/ directory.
-                const resumePath = '/my-portfolio/AnuragRajora_Resume.pdf'; 
-                const link = document.createElement('a');
-                link.href = resumePath;
-                link.download = 'AnuragRajora_Resume.pdf'; // Suggested filename for download
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            });
-        }
-    </script>
+<script>
+(function(){
+  var scope=document.getElementById('scope');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function play(){
+    scope.classList.remove('run','done');
+    void scope.offsetWidth;
+    scope.classList.add(reduce?'done':'run');
+  }
+  document.getElementById('replay').addEventListener('click',play);
+  play();
+})();
+</script>
 </body>
 </html>
