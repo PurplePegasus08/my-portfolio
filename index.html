@@ -162,7 +162,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);f
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
-      <a class="btn" href="Anurag_Rajora_Resume.pdf" download>Resume</a>
+      <a class="btn" href="resume.html">Resume</a>
     </nav>
   </div>
 </header>
@@ -174,7 +174,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);f
       <h1>I build computer vision and ML systems that work on real data.</h1>
       <p class="lede">Data scientist in Delhi with two years of experience. I've built <b>face recognition on pgvector</b>, <b>YOLOv8 number plate detection</b> and a <b>recommendation engine for BSNL</b>, and I ship them behind FastAPI.</p>
       <div class="cta">
-        <a class="btn" href="Anurag_Rajora_Resume.pdf" download>Download resume</a>
+        <a class="btn" href="resume.html">Download resume</a>
         <a class="btn ghost" href="#projects">See projects</a>
       </div>
     </div>
@@ -238,12 +238,12 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);f
       <article class="proj">
         <div>
           <span class="tag">Featured</span>
-          <h3>Flowmatics</h3>
-          <p class="stack">FastAPI, LangGraph, Gemini, Ollama, Pandas, scikit-learn, React 19, TypeScript</p>
+          <h3>Face recognition attendance</h3>
+          <p class="stack">FaceNet, MTCNN, FastAPI, PostgreSQL, pgvector</p>
         </div>
         <div>
-          <p>Upload a CSV, explore it in several analysis views and ask questions in plain English. An agent built on LangGraph runs the analysis and returns charts. It works with Google Gemini or a local model through Ollama, so data can stay on your machine.</p>
-          <p class="links"><a href="https://github.com/PurplePegasus08/Flowmatics" target="_blank" rel="noopener">View code on GitHub</a></p>
+          <p>Attendance workflow combining face embeddings, vector similarity search and geofencing. A FastAPI backend manages verification and attendance events.</p>
+          <p class="result">Reported verification accuracy: 80%.</p>
         </div>
       </article>
       <article class="proj">
@@ -259,12 +259,11 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);f
       </article>
       <article class="proj">
         <div>
-          <h3>Sign language translator</h3>
-          <p class="stack">MediaPipe, PyTorch, ResNet18</p>
+          <h3>Smart procurement bill understanding</h3>
+          <p class="stack">Python, Vision-Language Models</p>
         </div>
         <div>
-          <p>Real-time American Sign Language recognition from a webcam. MediaPipe isolates the hand, and a pretrained ResNet18 classifies the sign so it shows as text on the live feed.</p>
-          <p class="links"><a href="https://github.com/PurplePegasus08/Sign_Language-translator" target="_blank" rel="noopener">View code on GitHub</a></p>
+          <p>Document-processing workflow that extracts key fields from procurement bills, structures the information and produces concise summaries to support faster review.</p>
         </div>
       </article>
       <article class="proj">
@@ -279,12 +278,12 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);f
       </article>
       <article class="proj">
         <div>
-          <h3>Laptop price prediction</h3>
-          <p class="stack">scikit-learn, pandas</p>
+          <h3>Credit card fraud detection</h3>
+          <p class="stack">scikit-learn, Random Forest, GridSearchCV</p>
         </div>
         <div>
-          <p>Regression model that estimates a laptop's price from its processor, RAM, storage and other specs, built as an end-to-end ML project.</p>
-          <p class="links"><a href="https://github.com/PurplePegasus08/Laptop-price-prediction" target="_blank" rel="noopener">View code on GitHub</a></p>
+          <p>Binary classification workflow for an imbalanced dataset, using preprocessing, feature scaling, model comparison and hyperparameter tuning.</p>
+          <p class="result">Reported F1 0.88 · Precision 0.86 · Recall 0.90.</p>
         </div>
       </article>
     </div>
